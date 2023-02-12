@@ -7,6 +7,8 @@ Está aplicação é um portifólio onde foi totalmente desenvolvida apartir do 
 - CRUD
 - Estrutural
 - Rotas autênticação
+- Regras Negociais
+- Requisitos funcionais e não funcionais
 
 ## Conceitos aplicados
 
