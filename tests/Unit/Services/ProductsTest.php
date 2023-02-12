@@ -6,6 +6,24 @@ use Tests\TestCase;
 
 class ProductsTest extends TestCase
 {
+    
+    /**
+     * Testa se a rota exige autenticação.
+     *
+     * @return void
+     */
+    public function testUnauthorized()
+    {
+        $response = $this->get('/api/products');
+        $response->assertStatus(302);
+        $response = $this->post('/api/products');
+        $response->assertStatus(302);
+        $response = $this->get('/api/products/1');
+        $response->assertStatus(302);
+        $response = $this->get('/api/products/category/1');
+        $response->assertStatus(302);
+    }
+
     /**
      * Teste de get da api produto.
      *

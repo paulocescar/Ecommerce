@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+
 Route::get('/sendmail', [App\Http\Controllers\SendMailController::class, 'sendMail']);
 
 Route::middleware('auth:sanctum')->group(function () {

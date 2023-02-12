@@ -8,6 +8,23 @@ use Tests\TestCase;
 class CategoriesTest extends TestCase
 {
     /**
+     * Testa se a rota exige autenticação.
+     *
+     * @return void
+     */
+    public function testUnauthorized()
+    {
+        $response = $this->get('/api/categories');
+        $response->assertStatus(302);
+        $response = $this->post('/api/categories');
+        $response->assertStatus(302);
+        $response = $this->get('/api/categories/pages/10');
+        $response->assertStatus(302);
+        $response = $this->get('/api/categories/1');
+        $response->assertStatus(302);
+    }
+
+    /**
      * Teste de get da api categorias.
      *
      * @return void
