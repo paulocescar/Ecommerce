@@ -80,6 +80,83 @@ class ProductsTest extends TestCase
     }
 
     /**
+     * Teste de estrutura da api produto.
+     *
+     * @return void
+     */
+    public function testGetByIdStructure()
+    {
+        $response = $this->withHeader('Authorization', $this->bearer)
+                        ->get('/api/products/1');
+
+        $response->assertJsonStructure([
+            [
+                "id",
+                "codigo",
+                "descricao",
+                "tipo",
+                "situacao",
+                "unidade",
+                "slug",
+                "preco",
+                "precoCusto",
+                "descricaoCurta",
+                "descricaoComplementar",
+                "dataInclusao",
+                "dataAlteracao",
+                "imageThumbnail",
+                "urlVideo",
+                "nomeFornecedorc",
+                "codigoFabricante",
+                "marca",
+                "class_fiscal",
+                "cest",
+                "origem",
+                "idGrupoProduto",
+                "linkExterno",
+                "observacoes",
+                "grupoProduto",
+                "garantia",
+                "descricaoFornecedor",
+                "idFabricante",
+                "pesoLiq",
+                "pesoBruto",
+                "estoqueMinimo",
+                "estoqueMaximo",
+                "gtin",
+                "gtinEmbalagem",
+                "larguraProduto",
+                "alturaProduto",
+                "profundidadeProduto",
+                "unidadeMedida",
+                "itensPorCaixa",
+                "volumes",
+                "localizacao",
+                "crossdocking",
+                "condicao",
+                "freteGratis",
+                "producao",
+                "dataValidade",
+                "spedTipoItem",
+                "categoria_id",
+                "created_at",
+                "updated_at",
+                "categoria" => [
+                    "id",
+                    "descricao",
+                    "slug",
+                    "idCategoriaPai",
+                    "created_at",
+                    "updated_at"
+                ]
+            ]
+        ]);
+
+        $response->assertStatus(200);
+    }
+
+
+    /**
      * Teste de create da api produto por categoria.
      *
      * @return void

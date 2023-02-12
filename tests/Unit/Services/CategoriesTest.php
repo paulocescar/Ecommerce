@@ -52,6 +52,25 @@ class CategoriesTest extends TestCase
     }
 
     /**
+     * Teste de estrutura da api categorias.
+     *
+     * @return void
+     */
+    public function testGetByIdStructure()
+    {
+        $response = $this->withHeader('Authorization', $this->bearer)
+                        ->get('/api/categories/1');
+
+        $response->assertJsonStructure([
+            "id",
+            "descricao",
+            "idCategoriaPai"
+        ]);
+
+        $response->assertStatus(200);
+    }
+
+    /**
      * Teste de get da api paginate categorias.
      *
      * @return void
