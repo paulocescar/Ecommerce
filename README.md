@@ -6,7 +6,8 @@ Está aplicação é um portifólio onde foi totalmente desenvolvida apartir do 
 ## Testes aplicados
 - CRUD
 - Estrutural
-- Rotas autênticação
+- Rotas autênticadas e não autenticadas
+- Respostas de sucesso e erro
 - Regras Negociais
 - Requisitos funcionais e não funcionais
 
