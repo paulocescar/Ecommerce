@@ -20,7 +20,7 @@ class CategoriesFactory extends Factory
     {
         return [
             'descricao' => $this->faker->descricao(),
-            'idCategoriaPai' => Str::random(10),
+            'idCategoriaPai' => rand(1, 10000),
         ];
     }
 }

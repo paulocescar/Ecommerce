@@ -14,6 +14,6 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->bearer = 'Bearer 3|hvTvMv7qEmaVldAWKOsQUsqheTq425Ygc7WDloVw';
+        $this->bearer = 'Bearer 7|kSXsqjVfvbpjZAxLugQqHrgQB6S1PAvltITvkGtC';
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use App\Repositories\ProductsRepository;
+use App\Repositories\ProductsImagesRepositoy;
 use App\DataTransferObjects\ProductsDTO;
 use Illuminate\Support\Facades\Cache;
 use DB;
@@ -11,11 +12,14 @@ use DB;
 class ProductsServices
 {
     private $productsRepository;
+    private $productsImagesRepositoy;
 
     public function __construct(
-        ProductsRepository $productsRepository
+        ProductsRepository $productsRepository,
+        ProductsImagesRepositoy $productsImagesRepositoy
     ){
         $this->productsRepository = $productsRepository;
+        $this->productsImagesRepositoy = $productsImagesRepositoy;
     }
 
     public function get(){
@@ -37,10 +41,13 @@ class ProductsServices
         return $this->productsRepository->getByCategory((int)$category_id);
     }
 
-    public function save(ProductsDTO $dto){
+    public function save(ProductsDTO $dto, $images){
         DB::beginTransaction();
         try{
-            $this->productsRepository->create($dto->toArray());
+            $produto = $this->productsRepository->create($dto->toArray());
+            $id = $produto->id;
+            $images['id'] = $id;
+            $this->productsImagesRepositoy->createAll($images);
             $this->forgetCache();
             DB::commit();
         }catch(Exception $e){

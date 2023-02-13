@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductsResources;
 use App\Http\Resources\ProductsCollection;
 use App\DataTransferObjects\ProductsDTO;
+use App\DataTransferObjects\ImagemDTO;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\ProductsRequest;
 use App\Services\ProductsServices;
@@ -40,9 +41,10 @@ class ProductsController extends Controller
     
     public function store(ProductsRequest $request)
     {
+        $images = $request->input('images');
         $dto = new ProductsDTO($request->all());
         try{
-            return $this->productsServices->save($dto);
+            return $this->productsServices->save($dto, $images);
         }catch(Exception $e){
             return $e->message();
         }

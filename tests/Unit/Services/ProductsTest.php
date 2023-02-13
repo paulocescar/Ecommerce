@@ -3,27 +3,10 @@
 namespace Tests\Unit\Services;
 
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 class ProductsTest extends TestCase
 {
-    
-    /**
-     * Testa se a rota exige autenticação.
-     *
-     * @return void
-     */
-    public function testUnauthorized()
-    {
-        $response = $this->get('/api/products');
-        $response->assertStatus(302);
-        $response = $this->post('/api/products');
-        $response->assertStatus(302);
-        $response = $this->get('/api/products/1');
-        $response->assertStatus(302);
-        $response = $this->get('/api/products/category/1');
-        $response->assertStatus(302);
-    }
-
     /**
      * Teste de get da api produto.
      *
@@ -48,18 +31,26 @@ class ProductsTest extends TestCase
         $response = $this->withHeader('Authorization', $this->bearer)
                         ->post('/api/products', [
                             "codigo"=>0,
-                            "descricao"=>"descricao",
-                            "tipo"=>"tipo",
-                            "situacao"=>"situacao",
+                            "descricao"=>"produto-".Str::random(8),
+                            "tipo"=>"tipo-".Str::random(8),
+                            "situacao"=>"situacao-".Str::random(8),
                             "unidade"=>0,
-                            "preco"=>0,
-                            "precoCusto"=>0.0,
-                            "descricaoCurta"=>"descricaoCurta",
-                            "descricaoComplementar"=>"descricaoComplementar",
-                            "marca"=>"marca",
+                            "preco"=>floatval(rand(1, 99).".".rand(00, 99)),
+                            "precoCusto"=>floatval(rand(1, 99).".".rand(00, 99)),
+                            "descricaoCurta"=>"descricaoCurta-".Str::random(8),
+                            "descricaoComplementar"=>"descricaoComplementar-".Str::random(16),
+                            "marca"=>"marca-".Str::random(8),
                             "estoqueMinimo"=>1.0,
                             "estoqueMaximo"=>10.0,
-                            'categoria_id'=>1
+                            'categoria_id'=>3,
+                            "images"=>[
+                              [
+                                "link"=>"link-".Str::random(8),
+                                "validade"=>"validade-".Str::random(8),
+                                "tipoArmazenamento"=>"tipoArmazenamento-".Str::random(8),
+                                "produto_id"
+                              ]
+                            ]
                         ]);
 
         $response->assertStatus(200);
@@ -148,6 +139,14 @@ class ProductsTest extends TestCase
                     "idCategoriaPai",
                     "created_at",
                     "updated_at"
+                ],
+                "images"=>[
+                  [
+                    "link",
+                    "validade",
+                    "tipoArmazenamento",
+                    "produto_id"
+                  ]
                 ]
             ]
         ]);

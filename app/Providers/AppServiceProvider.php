@@ -26,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        ini_set('display_errors', '0');
+        ini_set('display_startup_errors', '0');
         setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
         date_default_timezone_set('America/Sao_Paulo');
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);

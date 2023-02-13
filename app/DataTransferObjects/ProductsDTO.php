@@ -4,7 +4,7 @@ namespace App\DataTransferObjects;
 
 use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\DataTransferObject\DataTransferObject;
-
+use App\DataTransferObjects\ImagemDTO;
 /**
  * Class ProductsDTO.
  */
@@ -16,7 +16,7 @@ class ProductsDTO extends DataTransferObject
     public ?string $situacao;
     public ?string $slug;
     public int  $unidade;
-    public int  $preco;
+    public float  $preco;
     public ?float  $precoCusto;
     public ?string $descricaoCurta;
     public ?string $descricaoComplementar;
@@ -57,4 +57,5 @@ class ProductsDTO extends DataTransferObject
     public ?string $dataValidade;
     public ?string $spedTipoItem;
     public ?int    $categoria_id;
+    public ?array $images;
 }
