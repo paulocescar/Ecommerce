@@ -10,6 +10,7 @@ use Spatie\DataTransferObject\DataTransferObject;
  */
 class CategoriesProductsDTO  extends DataTransferObject
 {
+    public ?int $id;
     public string $descricao;
     public ?string $slug;
     public ?int $idCategoriaPai;

@@ -19,6 +19,7 @@ Route::get('/sendmail', [App\Http\Controllers\SendMailController::class, 'sendMa
 
 
 Route::prefix('categories')->group(function () {
+    Route::get('/sempai', [App\Http\Controllers\CategoryProductsController::class, 'semPai']); 
     Route::get('/pages/{pages}', [App\Http\Controllers\CategoryProductsController::class, 'get']);
     Route::get('/', [App\Http\Controllers\CategoryProductsController::class, 'get']);
     Route::post('', [App\Http\Controllers\CategoryProductsController::class, 'store']);

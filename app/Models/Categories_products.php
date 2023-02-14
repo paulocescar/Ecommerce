@@ -22,6 +22,15 @@ class Categories_products extends Model
     ];
 
     public function categoriaPai(){
-        return $this->belongsTo(Categories_products::class, 'idCategoriaPai', 'id');
+        return $this->hasOne(Categories_products::class, 'idCategoriaPai', 'id');
+    }
+
+    public function scopeSemPai($query){
+        return $query->whereNull('idCategoriaPai');
+    }
+
+    public function getFormattedCreatedAttribute()
+    {
+        return \Carbon\Carbon::parse($this->created_at)->format("d/m/Y");
     }
 }

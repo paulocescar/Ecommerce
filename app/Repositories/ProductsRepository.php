@@ -19,11 +19,6 @@ class ProductsRepository extends BaseRepository
         return Products::class;
     }
     
-    public function getByProductId($id): mixed
-    {
-        return Products::where('id',$id)->with(['categoria','images'])->get();
-    }
-
     public function getByCategory($category_id)
     {
         return Products::where('categoria_id', $category_id)->with(['categoria','images'])->get();

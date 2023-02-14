@@ -23,9 +23,8 @@ class ProductsServices
     }
 
     public function get(){
-
         if (!Cache::has('products')) {
-            $products = $this->productsRepository->get();
+            $products = $this->productsRepository->with(['categoria','images'])->get();
             Cache::put('products', $products, 600); // 10 Minutes
         } else {
             $products = Cache::get('products');
@@ -34,7 +33,7 @@ class ProductsServices
     }
     
     public function getById($id){
-        return $this->productsRepository->getByProductId((int)$id);
+        return $this->productsRepository->with(['categoria','images'])->where('id',$id)->get();
     }
 
     public function getByCategory($category_id){

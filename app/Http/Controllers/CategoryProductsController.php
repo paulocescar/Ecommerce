@@ -8,7 +8,7 @@ use App\DataTransferObjects\CategoriesProductsDTO;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\CategoriesProductsRequest;
 use App\Services\CategoriesProductsServices;
-
+use App\Models\Categories_products;
 
 class CategoryProductsController extends Controller
 {
@@ -59,5 +59,10 @@ class CategoryProductsController extends Controller
         }catch(Exception $e){
             return $e->message();
         }
+    }
+
+    public function semPai(){
+        $cat = Categories_products::semPai()->get()->first();
+        return $cat->formatted_created;
     }
 }
