@@ -60,9 +60,4 @@ class CategoryProductsController extends Controller
             return $e->message();
         }
     }
-
-    public function semPai(){
-        $cat = Categories_products::semPai()->get()->first();
-        return $cat->formatted_created;
-    }
 }
