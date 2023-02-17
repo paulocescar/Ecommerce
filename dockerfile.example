@@ -1,0 +1,40 @@
+FROM php:8.2-fpm
+
+# Instala as dependências necessárias
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    libonig-dev \
+    libpng-dev \
+    libxml2-dev
+
+# Instala as extensões necessárias do PHP
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd
+
+# Instala o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Define o diretório de trabalho como o diretório do projeto
+WORKDIR /var/www/html
+
+# Copia os arquivos do projeto para o container
+COPY ./ /var/www/html/
+
+# Instala as dependências do projeto com o Composer
+RUN composer install
+
+# Define as permissões necessárias
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Define as variáveis de ambiente necessárias
+ENV APP_KEY=base64:R8vubf0Q4+w4wjL95j7W8RvNjJrskEq+OrFNVdfw/8w=
+ENV APP_NAME=Laravel
+ENV APP_ENV=local
+ENV APP_DEBUG=true
+ENV APP_URL=http://localhost
+
+# Expõe a porta 9000
+EXPOSE 9000
+
+# Executa o servidor web do PHP
+CMD ["php-fpm"]

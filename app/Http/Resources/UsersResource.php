@@ -4,7 +4,7 @@
 
     use Illuminate\Http\Resources\Json\JsonResource;
 
-    Class ClientsResource extends JsonResource
+    Class UsersResource extends JsonResource
     {
         /**
          * Transfor json response in to array
@@ -14,8 +14,7 @@
             return [
                 'id'        => $this->id,
                 'name'      => $this->name,
-                'email'     => $this->email,
-                'api_key'     => $this->api_key,
+                'email'     => $this->email
             ];
         }
     }

@@ -4,7 +4,7 @@
 
     use Illuminate\Http\Resources\Json\ResourceCollection;
 
-    Class UsersCollection extends ResourceCollection
+    Class CuponCollection extends ResourceCollection
     {
         /**
          * Transfor request in to array

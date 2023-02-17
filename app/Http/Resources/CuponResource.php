@@ -3,8 +3,9 @@
     namespace App\Http\Resources;
 
     use Illuminate\Http\Resources\Json\JsonResource;
+    use App\Http\Resources\AddressesResource;
 
-    Class ClientsResource extends JsonResource
+    Class CuponResource extends JsonResource
     {
         /**
          * Transfor json response in to array
@@ -13,9 +14,9 @@
         {
             return [
                 'id'        => $this->id,
-                'name'      => $this->name,
-                'email'     => $this->email,
-                'api_key'     => $this->api_key,
+                'cupon'     => $this->cupon,
+                'desconto'  => $this->desconto,
+                'tipo_id'   => $this->tipo_id
             ];
         }
     }
