@@ -19,10 +19,11 @@ class Categories_products extends Model
         'descricao',
         'slug',
         'idCategoriaPai',
+        'categoria_pai',
     ];
 
     public function categoriaPai(){
-        return $this->hasOne(Categories_products::class, 'idCategoriaPai', 'id');
+        return $this->hasOne(Categories_products::class, 'id', 'idCategoriaPai');
     }
 
     public function scopeSemPai($query){

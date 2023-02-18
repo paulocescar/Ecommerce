@@ -15,6 +15,7 @@
                 'id'                => $this->id,
                 'descricao'         => $this->descricao,
                 'idCategoriaPai'    => $this->idCategoriaPai,
+                'categoria_pai'     => $this->categoria_pai,
             ];
         }
     }
