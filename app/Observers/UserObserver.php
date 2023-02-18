@@ -5,14 +5,18 @@ namespace App\Observers;
 use App\Models\user;
 use App\Services\SendMailService;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendEmail;
 
 class UserObserver
 {
     private $sendMailServices;
+    private $sendMailJobs;
 
-    public function __construct(SendMailService $sendMailService)
+    public function __construct(SendMailService $sendMailService,
+    SendEmail $sendMailJobs)
     {
         $this->sendMailServices = $sendMailService;
+        $this->sendMailJobs = $sendMailJobs;
     }
 
     /**
@@ -24,6 +28,7 @@ class UserObserver
     public function created(user $user)
     {
         // $this->sendMailServices->sendMail();
+        $this->sendMailJobs::dispatch($this->sendMailServices)->onQueue('emails');
     }
 
     /**
