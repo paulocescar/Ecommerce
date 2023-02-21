@@ -37,4 +37,14 @@ class CartController extends Controller
         $carts = $this->cartsServices->getByUserId();
         return response()->json(new CartsCollection($carts));
     }
+
+    public function updateByUserId()
+    {
+        try{
+            return $this->cartsServices->updateByUserId();
+        }catch(Exception $e){
+            return $e->message();
+        }
+    }
+    
 }

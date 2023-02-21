@@ -71,10 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 
-    Route::prefix('carrinhos')->group(function () {
+    Route::prefix('carts')->group(function () {
         Route::get('/', [App\Http\Controllers\CartController::class, 'get']);
         Route::post('/', [App\Http\Controllers\CartController::class, 'store']);
         Route::get('/user', [App\Http\Controllers\CartController::class, 'getByUserId']);
+        Route::get('/carts_user', [App\Http\Controllers\CartController::class, 'updateByUserId']);
     });
 
 

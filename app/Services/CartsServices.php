@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Repositories\CartRepository;
 use App\DataTransferObjects\CartsDTO;
+use App\Http\Resources\CartsResource;
 use Illuminate\Support\Facades\Cache;
 use DB;
 /**
@@ -47,10 +48,13 @@ class CartsServices
         }
     }
 
-    public function updateById($id,CartsDTO $dto){
+    public function updateByUserId(){
         DB::beginTransaction();
         try{
-            $this->cartRepository->updateById($id, $dto->toArray());
+
+            $dto = $this->getByUserId();
+
+            // $this->cartRepository->updateById($dto->id, $dto);
             $this->forgetCache();
             DB::commit();
         }catch(Exception $e){
