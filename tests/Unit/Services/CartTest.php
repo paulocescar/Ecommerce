@@ -14,7 +14,7 @@ class CartTest extends TestCase
      */
     public function testUnauthorized()
     {
-        $response = $this->get('/api/carrinhos');
+        $response = $this->get('/api/carts');
         $response->assertStatus(302);
     }
 
@@ -26,7 +26,7 @@ class CartTest extends TestCase
      */
     public function testGet()
     {
-        $response = $this->withHeader('Authorization', $this->bearer)->get('/api/carrinhos');
+        $response = $this->withHeader('Authorization', $this->bearer)->get('/api/carts');
         $response->assertStatus(200);
     }
 
@@ -38,9 +38,8 @@ class CartTest extends TestCase
     public function testCreate()
     {
         $response = $this->withHeader('Authorization', $this->bearer)
-                    ->post('/api/carrinhos',[
-                        "user_id"=>1,
-                        "produto_id"=>107,
+                    ->post('/api/carts',[
+                        "produto_id"=>108,
                         "preco"=>55.90,
                         "quantidade"=>1
                     ]);
@@ -54,7 +53,8 @@ class CartTest extends TestCase
      */
     public function testGetByUserId()
     {
-        $response = $this->withHeader('Authorization', $this->bearer)->get('/api/carrinhos/user');
+        $response = $this->withHeader('Authorization', $this->bearer)->get('/api/carts/user');
         $response->assertStatus(200);
     }
+
 }

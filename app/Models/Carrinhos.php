@@ -24,7 +24,7 @@ class Carrinhos extends Model
         'id'
     ];
 
-    public function produtos(){
+    public function produto(){
         return $this->hasMany(Products::class,'id','produto_id');
     }
 

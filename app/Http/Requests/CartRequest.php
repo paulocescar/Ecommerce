@@ -24,7 +24,6 @@ class CartRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'produto_id' => 'required',
             'preco' => 'required',
             'quantidade' => 'required'

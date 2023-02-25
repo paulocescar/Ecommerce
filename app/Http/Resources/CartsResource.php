@@ -22,7 +22,7 @@
                 'preco'         => $this->preco,
                 'quantidade'    => $this->quantidade,
                 'usuario'       => $this->usuario,
-                'produtos'      => new ProductsCollection($this->produtos),
+                'produto'       => new ProductsCollection($this->produto),
                 'cupon'         => new CuponResource($this->cupon_id)
             ];
         }

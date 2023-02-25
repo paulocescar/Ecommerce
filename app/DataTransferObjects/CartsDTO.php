@@ -10,7 +10,6 @@ use Spatie\DataTransferObject\DataTransferObject;
  */
 class CartsDTO extends DataTransferObject
 {
-    public int $user_id;
     public int $produto_id;
     public ?int $cupon_id;
     public float $preco;
