@@ -2,11 +2,11 @@
 
 namespace App\Observers;
 
-use App\Models\user;
+use App\Models\Pedidos;
 use App\Services\SendMailService;
 use App\Jobs\SendEmail;
 
-class UserObserver
+class OrderObserver
 {
     private $sendMailServices;
     private $sendMailJobs;
@@ -19,57 +19,56 @@ class UserObserver
     }
 
     /**
-     * Handle the user "created" event.
+     * Handle the Pedidos "created" event.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\Pedidos  $pedidos
      * @return void
      */
-    public function created(user $user)
+    public function created(Pedidos $pedidos)
     {
-        // $this->sendMailServices->sendMail();
         $this->sendMailJobs::dispatch($this->sendMailServices)->onQueue('emails');
     }
 
     /**
-     * Handle the user "updated" event.
+     * Handle the Pedidos "updated" event.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\Pedidos  $pedidos
      * @return void
      */
-    public function updated(user $user)
+    public function updated(Pedidos $pedidos)
     {
         //
     }
 
     /**
-     * Handle the user "deleted" event.
+     * Handle the Pedidos "deleted" event.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\Pedidos  $pedidos
      * @return void
      */
-    public function deleted(user $user)
+    public function deleted(Pedidos $pedidos)
     {
         //
     }
 
     /**
-     * Handle the user "restored" event.
+     * Handle the Pedidos "restored" event.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\Pedidos  $pedidos
      * @return void
      */
-    public function restored(user $user)
+    public function restored(Pedidos $pedidos)
     {
         //
     }
 
     /**
-     * Handle the user "force deleted" event.
+     * Handle the Pedidos "force deleted" event.
      *
-     * @param  \App\Models\user  $user
+     * @param  \App\Models\Pedidos  $pedidos
      * @return void
      */
-    public function forceDeleted(user $user)
+    public function forceDeleted(Pedidos $pedidos)
     {
         //
     }

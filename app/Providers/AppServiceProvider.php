@@ -7,6 +7,8 @@ use App\Models\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
 use App\Observers\UserObserver;
 use App\Models\User;
+use App\Models\Pedidos;
+use App\Observers\OrderObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
         User::observe(UserObserver::class);
+        Pedidos::observe(OrderObserver::class);
     }
 }
