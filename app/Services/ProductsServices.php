@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use App\Repositories\ProductsRepository;
-use App\Repositories\ProductsImagesRepositoy;
+use App\Repositories\ProductsImagesRepository;
 use App\DataTransferObjects\ProductsDTO;
 use Illuminate\Support\Facades\Cache;
 use DB;
@@ -12,14 +12,14 @@ use DB;
 class ProductsServices
 {
     private $productsRepository;
-    private $productsImagesRepositoy;
+    private $productsImagesRepository;
 
     public function __construct(
         ProductsRepository $productsRepository,
-        ProductsImagesRepositoy $productsImagesRepositoy
+        ProductsImagesRepository $productsImagesRepository
     ){
         $this->productsRepository = $productsRepository;
-        $this->productsImagesRepositoy = $productsImagesRepositoy;
+        $this->productsImagesRepository = $productsImagesRepository;
     }
 
     public function get(){
@@ -46,7 +46,7 @@ class ProductsServices
             $produto = $this->productsRepository->create($dto->toArray());
             $id = $produto->id;
             $images['id'] = $id;
-            $this->productsImagesRepositoy->createAll($images);
+            $this->productsImagesRepository->createAll($images);
             $this->forgetCache();
             DB::commit();
         }catch(Exception $e){

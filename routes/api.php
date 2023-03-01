@@ -78,6 +78,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/carts_user', [App\Http\Controllers\CartController::class, 'updateByUserId']);
     });
 
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [App\Http\Controllers\OrderController::class, 'get']);
+        Route::post('/', [App\Http\Controllers\OrderController::class, 'store']);
+    });
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();

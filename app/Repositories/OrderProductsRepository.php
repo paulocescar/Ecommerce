@@ -3,14 +3,14 @@
 namespace App\Repositories;
 
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-use App\Models\Products_images;
+use App\Models\Pedidos_produtos;
 use Hamcrest\Type\IsBoolean;
 use DB;
 
 /**
- * Class ProductsImagesRepositoy.
+ * Class OrderProductsRepository.
  */
-class ProductsImagesRepositoy extends BaseRepository
+class OrderProductsRepository extends BaseRepository
 {
     /**
      * @return string
@@ -18,22 +18,22 @@ class ProductsImagesRepositoy extends BaseRepository
      */
     public function model()
     {
-        return Products_images::class;
+        return Pedidos_produtos::class;
     }
     
     public function getByProductId($id): mixed
     {
-        return Products_images::where('id',$id)->get();
+        return Pedidos_produtos::where('id',$id)->with(['produtos','produtos.images'])->get();
     }
 
-    public function createAll($images): mixed
+    public function createAll($pedidoProdutos): mixed
     {
         DB::beginTransaction();
         try{
-            foreach($images as $image){
-                if(is_countable($image)){
-                    $image['produto_id'] = $images['id'];
-                    Products_images::create($image);
+            foreach($pedidoProdutos as $produto){
+                if(is_countable($produto)){
+                    $image['pedido_id'] = $pedidoProdutos['id'];
+                    Pedidos_produtos::create($produto);
                 }
             }
             DB::commit();
